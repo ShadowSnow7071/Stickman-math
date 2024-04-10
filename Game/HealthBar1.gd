@@ -6,4 +6,4 @@ func _ready():
 	update()
 
 func update():
-	value = P1.currentHealth * 100 / P1.maxHealth
+	value = 3 * 100 / 3

@@ -6,11 +6,9 @@ const gravity = 600
 
 signal healthChanged
 
-@export var maxHealth = 30
-@onready var currentHealth: int = maxHealth
+@export var maxHealth = 3
 @onready var animP1 = $AnimatedSprite2D
-
-var currentHealth: int = 3
+@onready var currentHealth: int = maxHealth
 
 func _physics_process(delta):
 	
@@ -44,7 +42,7 @@ func _physics_process(delta):
 		animP1.play("jump")
 		
 func _on_hurt_box_area_entered(area):
-	if area.name == "idle"
+	if area.name == "idle":
 		currentHealth -= 1
 		print_debug(currentHealth)
 		
