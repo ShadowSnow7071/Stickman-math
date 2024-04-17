@@ -8,9 +8,8 @@ var gravity = 600
 # Ataques y vida
 var Enemy_range = false
 var Enemy_cooldown = true
-var health = 100
+var health = 200
 var P1_alive = true
-
 var attackin = false
 @onready var animP1 = $AnimatedSprite2D
 @onready var healthbar = $Healthbar
@@ -23,12 +22,15 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	P2_attack()
 	attackP1()
-
+	Global.P1_life = health
+	
 	if health <= 0:
 		P1_alive = false
+		Global.player2_current_attack = false
 		health = 0
 		print("player1 has been defeated")
-		self.queue_free()
+		get_tree().change_scene_to_file("res://Death screen.tscn")
+		Global.P2_hits = 0
 
 	if Input.is_action_pressed("P1_forward"):
 		velocity.x = speed
@@ -76,13 +78,16 @@ func P1():
 
 func P2_attack():
 	if Enemy_range and Global.player2_current_attack == true:
+		Global.score = 0
 		if Enemy_cooldown == true:
 			health = health - 10
 			$damage.start()
 			Enemy_cooldown = false
 			_set_health(health)
 			print("P1 -10 health")
-
+			Global.P2_hits = Global.P2_hits + 1
+			Global.scoreP1 = Global.scoreP1 + 10
+			
 func attackP1():
 	if Input.is_action_pressed("P1_Attack"):
 		Global.punch1_ip = true
@@ -93,6 +98,7 @@ func attackP1():
 	elif Input.is_action_just_released("P1_Attack"):
 		attackin = false
 		Global.player1_current_attack = false
+
 
 func _on_damage_timeout():
 	Enemy_cooldown = true

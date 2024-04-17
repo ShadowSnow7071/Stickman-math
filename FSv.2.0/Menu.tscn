@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvslg0mbd0nh6"]
+[gd_scene load_steps=8 format=3 uid="uid://dvslg0mbd0nh6"]
 
 [ext_resource type="Script" path="res://Menu.gd" id="1_7oirb"]
 [ext_resource type="Texture2D" uid="uid://bahcvv56uoioi" path="res://Parallax/sign.png" id="1_uv3pf"]
+[ext_resource type="AudioStream" uid="uid://d2p60605vq1b2" path="res://Parallax/confrontation.ogg" id="2_f50n7"]
 [ext_resource type="Texture2D" uid="uid://cx1qsqa4qwsus" path="res://Parallax/parallax-00.png" id="2_ohytj"]
 [ext_resource type="Texture2D" uid="uid://owlwdggvbxt3" path="res://Parallax/parallax-04.png" id="3_skiio"]
 [ext_resource type="Texture2D" uid="uid://b3xdti5lqpivg" path="res://Parallax/lava.png" id="4_k6lsm"]
@@ -9,6 +10,11 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_7oirb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_f50n7")
+volume_db = 1.463
+autoplay = true
 
 [node name="Sign" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -36,29 +42,32 @@ scale = Vector2(2.9974, 4.29167)
 texture = ExtResource("4_k6lsm")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 232.0
-offset_top = 64.0
-offset_right = 920.0
-offset_bottom = 171.0
+offset_left = 113.0
+offset_top = 45.0
+offset_right = 1062.0
+offset_bottom = 193.0
 theme_override_fonts/font = ExtResource("5_mf4cj")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 100
 text = "Fighting Pixels"
 
-[node name="Jugar" type="Button" parent="Label"]
-layout_mode = 0
-offset_left = 231.0
-offset_top = 165.0
-offset_right = 436.0
-offset_bottom = 221.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 454.0
+offset_top = 250.0
+offset_right = 715.0
+offset_bottom = 360.0
+
+[node name="Jugar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mf4cj")
+theme_override_font_sizes/font_size = 50
 text = "JUGAR
 "
 
-[node name="Salir" type="Button" parent="Label/Jugar"]
-layout_mode = 0
-offset_top = 67.0
-offset_right = 205.0
-offset_bottom = 123.0
+[node name="Salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mf4cj")
+theme_override_font_sizes/font_size = 30
 text = "SALIR"
 
-[connection signal="pressed" from="Label/Jugar" to="." method="_on_jugar_pressed"]
-[connection signal="pressed" from="Label/Jugar/Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]

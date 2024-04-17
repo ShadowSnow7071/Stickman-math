@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://4wu1v50o2icg"]
+
+[ext_resource type="Texture2D" uid="uid://cx1qsqa4qwsus" path="res://Parallax/parallax-00.png" id="1_g60vc"]
+[ext_resource type="Texture2D" uid="uid://cqgs3aseyvj8m" path="res://Parallax/parallax-02.png" id="2_uq5kt"]
+[ext_resource type="Texture2D" uid="uid://b5crxbiom1nfk" path="res://Parallax/ladder.png" id="3_y2lx2"]
+[ext_resource type="Texture2D" uid="uid://b3xdti5lqpivg" path="res://Parallax/lava.png" id="4_8n450"]
+[ext_resource type="Texture2D" uid="uid://dt1flgxfpticd" path="res://Character1/Fall (32x32).png" id="5_pht3s"]
+[ext_resource type="Texture2D" uid="uid://c3w0rs753etfh" path="res://Character2/Jump (32x32).png" id="6_ahyje"]
+[ext_resource type="FontFile" uid="uid://d3q5vsvl5rvw" path="res://Parallax/Symtext.ttf" id="7_62ln3"]
+[ext_resource type="Script" path="res://loading.gd" id="7_800ei"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="Parallax-00" type="Sprite2D" parent="."]
+modulate = Color(26.036, 31.953, 0, 0.704)
+position = Vector2(575, 324)
+scale = Vector2(0.801389, 1.8)
+texture = ExtResource("1_g60vc")
+
+[node name="Parallax-03" type="Sprite2D" parent="."]
+self_modulate = Color(0.188235, 0.203922, 0.0745098, 0.615686)
+texture_filter = 1
+position = Vector2(665, 29)
+scale = Vector2(1.1025, 2.9279)
+texture = ExtResource("2_uq5kt")
+
+[node name="Parallax-02" type="Sprite2D" parent="."]
+self_modulate = Color(0.494118, 0.458824, 0.427451, 1)
+texture_filter = 1
+position = Vector2(628, 198)
+scale = Vector2(1.05, 1.71111)
+texture = ExtResource("2_uq5kt")
+
+[node name="Ladder" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.996078)
+texture_filter = 1
+position = Vector2(575, 230)
+scale = Vector2(15.9062, 12.8359)
+texture = ExtResource("3_y2lx2")
+
+[node name="Lava" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.811765, 0.545098, 1)
+self_modulate = Color(1, 1, 1, 0.894118)
+texture_filter = 1
+position = Vector2(602.75, 509)
+scale = Vector2(3.15755, 5.83333)
+texture = ExtResource("4_8n450")
+
+[node name="Fall(32x32)" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(246, 212)
+rotation = 0.427606
+scale = Vector2(14.6978, 13.1875)
+texture = ExtResource("5_pht3s")
+
+[node name="Jump(32x32)" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(890, 237)
+rotation = -0.345575
+scale = Vector2(13.3533, 13.2813)
+texture = ExtResource("6_ahyje")
+flip_h = true
+script = ExtResource("7_800ei")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 466.0
+offset_top = 217.0
+offset_right = 731.0
+offset_bottom = 459.0
+theme_override_fonts/font = ExtResource("7_62ln3")
+theme_override_font_sizes/font_size = 150
+text = "VS"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 536.0
+offset_right = 732.0
+offset_bottom = 648.0
+theme_override_fonts/font = ExtResource("7_62ln3")
+theme_override_font_sizes/font_size = 70
+text = "¡VAMOS!"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="pressed" from="Button" to="Jump(32x32)" method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="Jump(32x32)" method="_on_timer_timeout"]

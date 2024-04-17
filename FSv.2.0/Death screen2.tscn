@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bclowqx6x3paw"]
+[gd_scene load_steps=4 format=3 uid="uid://p3huvfktrmhe"]
 
-[ext_resource type="Texture2D" uid="uid://b7dvqjvpv3o8d" path="res://Parallax/water_8frames.png" id="1_8hcj3"]
-[ext_resource type="Script" path="res://Death screen.gd" id="1_tsl6g"]
-[ext_resource type="FontFile" uid="uid://d3q5vsvl5rvw" path="res://Parallax/Symtext.ttf" id="2_jo1t8"]
+[ext_resource type="Script" path="res://Death screen.gd" id="1_ex6fs"]
+[ext_resource type="Texture2D" uid="uid://b7dvqjvpv3o8d" path="res://Parallax/water_8frames.png" id="2_0ncxs"]
+[ext_resource type="FontFile" uid="uid://d3q5vsvl5rvw" path="res://Parallax/Symtext.ttf" id="3_3jkfk"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_tsl6g")
+script = ExtResource("1_ex6fs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.682353, 0.733333, 0.423529, 1)
 texture_filter = 1
 position = Vector2(575.125, 269.969)
 scale = Vector2(4.49121, 23.5645)
-texture = ExtResource("1_8hcj3")
+texture = ExtResource("2_0ncxs")
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
@@ -20,7 +20,7 @@ offset_left = 29.0
 offset_top = 101.0
 offset_right = 1141.0
 offset_bottom = 321.0
-theme_override_fonts/font = ExtResource("2_jo1t8")
+theme_override_fonts/font = ExtResource("3_3jkfk")
 theme_override_font_sizes/font_size = 140
 text = "¡Has perdido!"
 
@@ -31,16 +31,16 @@ offset_left = 504.0
 offset_top = 182.0
 offset_right = 602.0
 offset_bottom = 300.0
-theme_override_fonts/font = ExtResource("2_jo1t8")
+theme_override_fonts/font = ExtResource("3_3jkfk")
 theme_override_font_sizes/font_size = 80
-text = "P1"
+text = "P2"
 
 [node name="Button" type="Button" parent="."]
 offset_left = 392.0
 offset_top = 395.0
 offset_right = 775.0
 offset_bottom = 500.0
-theme_override_fonts/font = ExtResource("2_jo1t8")
+theme_override_fonts/font = ExtResource("3_3jkfk")
 theme_override_font_sizes/font_size = 50
 text = "MENU"
 

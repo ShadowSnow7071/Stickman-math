@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmys5yovdftwj"]
+[gd_scene load_steps=16 format=3 uid="uid://dmys5yovdftwj"]
 
 [ext_resource type="Script" path="res://WORLD.gd" id="1_nbkfl"]
 [ext_resource type="Texture2D" uid="uid://d02ijpusn0tih" path="res://Terrain (16x16).png" id="1_s5kta"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://owlwdggvbxt3" path="res://Parallax/parallax-04.png" id="6_p4a3l"]
 [ext_resource type="PackedScene" uid="uid://cb3hh412tu2cb" path="res://P1.tscn" id="7_wjc7o"]
 [ext_resource type="PackedScene" uid="uid://7h8scs82u2qy" path="res://P2.tscn" id="8_xiv5b"]
+[ext_resource type="FontFile" uid="uid://d3q5vsvl5rvw" path="res://Parallax/Symtext.ttf" id="10_6phag"]
+[ext_resource type="AudioStream" uid="uid://c42dsrpntw0nr" path="res://Parallax/fight.ogg" id="11_xo3bg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_44to1"]
 texture = ExtResource("1_s5kta")
@@ -456,6 +458,11 @@ texture = ExtResource("1_s5kta")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_44to1")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qc31j"]
+blend_mode = 2
+
+[sub_resource type="Theme" id="Theme_v0hde"]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_nbkfl")
 
@@ -469,8 +476,8 @@ layer_0/tile_data = PackedInt32Array(2490368, 393216, 8, 2490369, 458752, 8, 249
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(575.5, 324)
-scale = Vector2(0.797917, 1.79444)
+position = Vector2(576.5, 324)
+scale = Vector2(0.799306, 1.79444)
 texture = ExtResource("2_cl6w2")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -523,5 +530,95 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ScoreBox" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 2.0
+offset_right = 633.0
+offset_bottom = 85.0
+
+[node name="ScoreBackground" type="Panel" parent="Control/ScoreBox"]
+modulate = Color(0.8, 0.858824, 0.984314, 1)
+material = SubResource("CanvasItemMaterial_qc31j")
+layout_mode = 2
+
+[node name="Box2" type="MarginContainer" parent="Control/ScoreBox/ScoreBackground"]
+layout_mode = 2
+offset_right = 143.0
+offset_bottom = 83.0
+
+[node name="ScoreText" type="Label" parent="Control/ScoreBox/ScoreBackground/Box2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996078, 0.913725, 0.380392, 1)
+theme_override_fonts/font = ExtResource("10_6phag")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 479.0
+offset_top = -3.0
+offset_right = 668.0
+offset_bottom = 29.0
+theme = SubResource("Theme_v0hde")
+theme_override_fonts/font = ExtResource("10_6phag")
+text = "Regresar al Inicio"
+
+[node name="ScoreTime" type="Timer" parent="."]
+
+[node name="ControlHits" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 350.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlHits"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ControlHits/MarginContainer"]
+layout_mode = 2
+text = " P1 HITS:"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="ControlHits/MarginContainer/Label"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 27.0
+offset_right = 212.0
+offset_bottom = 50.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ControlHits"]
+layout_mode = 2
+offset_left = 801.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 42.0
+
+[node name="Label" type="Label" parent="ControlHits/MarginContainer2"]
+layout_mode = 2
+text = "P2 HITS :"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="ControlHits/MarginContainer2/Label"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 26.0
+offset_right = 181.0
+offset_bottom = 49.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_xo3bg")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="ScoreTime" to="." method="_on_score_time_timeout"]

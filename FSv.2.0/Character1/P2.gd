@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 var speed = 450
 var jump = 600
 const gravity = 600
@@ -8,7 +7,7 @@ const gravity = 600
 #ataques y vida
 var Enemy2_range = false
 var Enemy2_cooldown = true
-var health = 100
+var health = 200
 var P2_alive = true
 
 var attackin = false
@@ -24,11 +23,15 @@ func _physics_process(delta):
 	velocity.y += gravity*delta
 	P1_attack()
 	attack2()
+	Global.P2_life = health
+	Global.P1_hits = 0
+	
 	if health <= 0:
 		P2_alive = false
+		Global.player1_current_attack = false
 		health = 0
 		print("player2 has been defeated")
-		self.queue_free()
+		get_tree().change_scene_to_file("res://Death screen2.tscn")
 	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = speed
@@ -84,7 +87,10 @@ func P1_attack():
 			Enemy2_cooldown = false
 			_set_health(health)
 			print("P2 -10 health")
-
+			Global.P1_hits = Global.P1_hits + 1
+			Global.scoreP2 = Global.scoreP2 + 10
+			
+			
 func attack2():
 	if Input.is_action_pressed("P2_Attack"):
 		attackin = true
@@ -109,3 +115,4 @@ func _set_health(value):
 # Funcion del personaje cuando muere
 func _die():
 	animP2.play("idle")
+
