@@ -7,7 +7,7 @@ const gravity = 600
 #ataques y vida
 var Enemy2_range = false
 var Enemy2_cooldown = true
-var health = 200
+var health = 100
 var P2_alive = true
 
 var attackin = false
@@ -23,8 +23,6 @@ func _physics_process(delta):
 	velocity.y += gravity*delta
 	P1_attack()
 	attack2()
-	Global.P2_life = health
-	Global.P1_hits = 0
 	
 	if health <= 0:
 		P2_alive = false

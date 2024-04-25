@@ -251,13 +251,12 @@ position = Vector2(418, 419)
 shape = SubResource("CircleShape2D_8sn7m")
 
 [node name="damage" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.2
 
 [node name="Healthbar" parent="CharacterBody2D" instance=ExtResource("7_gn603")]
 offset_left = 296.0
 offset_top = 285.0
 offset_right = 536.0
-offset_bottom = 305.0
+offset_bottom = 308.0
 
 [connection signal="body_entered" from="CharacterBody2D/HitboxP1" to="CharacterBody2D" method="_on_hitbox_p_1_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/HitboxP1" to="CharacterBody2D" method="_on_hitbox_p_1_body_exited"]

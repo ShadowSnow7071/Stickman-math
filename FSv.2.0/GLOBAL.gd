@@ -18,5 +18,5 @@ var P1_hits = 0
 var P2_hits = 0
 
 #Vidas globales
-var P1_life = 0
-var P2_life = 0
+var P1_death = false
+var P2_death = false

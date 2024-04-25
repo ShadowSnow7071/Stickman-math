@@ -8,7 +8,7 @@ var gravity = 600
 # Ataques y vida
 var Enemy_range = false
 var Enemy_cooldown = true
-var health = 200
+var health = 100
 var P1_alive = true
 var attackin = false
 @onready var animP1 = $AnimatedSprite2D
@@ -22,7 +22,7 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	P2_attack()
 	attackP1()
-	Global.P1_life = health
+
 	
 	if health <= 0:
 		P1_alive = false
@@ -30,7 +30,6 @@ func _physics_process(delta):
 		health = 0
 		print("player1 has been defeated")
 		get_tree().change_scene_to_file("res://Death screen.tscn")
-		Global.P2_hits = 0
 
 	if Input.is_action_pressed("P1_forward"):
 		velocity.x = speed
@@ -89,7 +88,7 @@ func P2_attack():
 			Global.scoreP1 = Global.scoreP1 + 10
 			
 func attackP1():
-	if Input.is_action_pressed("P1_Attack"):
+	if Input.is_action_just_pressed("P1_Attack"):
 		Global.punch1_ip = true
 		attackin = true
 		Global.player1_current_attack = true
