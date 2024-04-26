@@ -11,6 +11,8 @@ var Enemy_cooldown = true
 var health = 100
 var P1_alive = true
 var attackin = false
+var P1_cooldown = true
+
 @onready var animP1 = $AnimatedSprite2D
 @onready var healthbar = $Healthbar
 
@@ -22,7 +24,6 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	P2_attack()
 	attackP1()
-
 	
 	if health <= 0:
 		P1_alive = false
@@ -77,20 +78,19 @@ func P1():
 
 func P2_attack():
 	if Enemy_range and Global.player2_current_attack == true:
-		Global.score = 0
-		if Enemy_cooldown == true:
-			health = health - 10
+		if P1_cooldown == true:
+			health = health - 5
 			$damage.start()
-			Enemy_cooldown = false
+			P1_cooldown = false
 			_set_health(health)
-			print("P1 -10 health")
+			print("P1 -5 health")
 			Global.P2_hits = Global.P2_hits + 1
-			Global.scoreP1 = Global.scoreP1 + 10
+			Global.scoreP1 = Global.scoreP1 + 5
 			
 func attackP1():
 	if Input.is_action_just_pressed("P1_Attack"):
-		Global.punch1_ip = true
 		attackin = true
+		Global.punch1_ip = true
 		Global.player1_current_attack = true
 		animP1.play("attack")
 		$damage.start()
@@ -100,7 +100,8 @@ func attackP1():
 
 
 func _on_damage_timeout():
-	Enemy_cooldown = true
+	P1_cooldown = true
+	
 
 func _set_health(value):
 	health = value

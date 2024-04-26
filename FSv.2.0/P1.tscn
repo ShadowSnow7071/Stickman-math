@@ -139,7 +139,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 15.0
+"speed": 27.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -237,8 +237,6 @@ position = Vector2(410.875, 404)
 scale = Vector2(7.19531, 7.375)
 sprite_frames = SubResource("SpriteFrames_ml013")
 animation = &"attack"
-frame = 4
-frame_progress = 0.00147716
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(418.5, 427.5)
@@ -251,6 +249,7 @@ position = Vector2(418, 419)
 shape = SubResource("CircleShape2D_8sn7m")
 
 [node name="damage" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
 
 [node name="Healthbar" parent="CharacterBody2D" instance=ExtResource("7_gn603")]
 offset_left = 296.0

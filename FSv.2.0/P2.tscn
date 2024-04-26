@@ -151,7 +151,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack2",
-"speed": 15.0
+"speed": 27.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -272,7 +272,7 @@ position = Vector2(486, 217)
 shape = SubResource("CircleShape2D_e13bd")
 
 [node name="damage2" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.2
+wait_time = 0.5
 
 [node name="Healthbar" parent="CharacterBody2D" instance=ExtResource("7_bif3m")]
 offset_left = 363.0
