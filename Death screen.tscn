@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bclowqx6x3paw"]
+
+[ext_resource type="Texture2D" uid="uid://b7dvqjvpv3o8d" path="res://Parallax/water_8frames.png" id="1_8hcj3"]
+[ext_resource type="Script" path="res://Death screen.gd" id="1_tsl6g"]
+[ext_resource type="FontFile" uid="uid://d3q5vsvl5rvw" path="res://Parallax/Symtext.ttf" id="2_jo1t8"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_tsl6g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.682353, 0.733333, 0.423529, 1)
+texture_filter = 1
+position = Vector2(575.125, 269.969)
+scale = Vector2(4.49121, 23.5645)
+texture = ExtResource("1_8hcj3")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 45.0
+offset_top = 106.0
+offset_right = 1157.0
+offset_bottom = 326.0
+theme_override_fonts/font = ExtResource("2_jo1t8")
+theme_override_font_sizes/font_size = 140
+text = "¡Has GANADO!"
+
+[node name="Label" type="Label" parent="Label"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 328.0
+offset_top = 180.0
+offset_right = 776.0
+offset_bottom = 298.0
+theme_override_fonts/font = ExtResource("2_jo1t8")
+theme_override_font_sizes/font_size = 80
+text = "PLAYER 2"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 392.0
+offset_top = 395.0
+offset_right = 775.0
+offset_bottom = 500.0
+theme_override_fonts/font = ExtResource("2_jo1t8")
+theme_override_font_sizes/font_size = 50
+text = "MENU"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
