@@ -8,7 +8,7 @@ var gravity = 600
 # Ataques y vida
 var Enemy_range = false
 var Enemy_cooldown = true
-var health = 100
+var P1_health = 100
 var P1_alive = true
 var attackin = false
 var P1_cooldown = true
@@ -17,7 +17,7 @@ var P1_cooldown = true
 @onready var healthbar = $Healthbar
 
 func _ready():
-	healthbar.init_health(health)
+	healthbar.init_health(P1_health)
 
 # Movimiento
 func _physics_process(delta):
@@ -25,10 +25,10 @@ func _physics_process(delta):
 	P2_attack()
 	attackP1()
 	
-	if health <= 0:
+	if P1_health <= 0:
 		P1_alive = false
 		Global.player2_current_attack = false
-		health = 0
+		P1_health = 0
 		print("player1 has been defeated")
 		get_tree().change_scene_to_file("res://Death screen.tscn")
 
@@ -79,10 +79,10 @@ func P1():
 func P2_attack():
 	if Enemy_range and Global.player2_current_attack == true:
 		if P1_cooldown == true:
-			health = health - 5
+			P1_health = P1_health - 5
 			$damage.start()
 			P1_cooldown = false
-			_set_health(health)
+			_set_health(P1_health)
 			print("P1 -5 health")
 			Global.P2_hits = Global.P2_hits + 1
 			Global.scoreP1 = Global.scoreP1 + 5
@@ -104,11 +104,11 @@ func _on_damage_timeout():
 	
 
 func _set_health(value):
-	health = value
-	if health <= 0 && P1_alive:
+	P1_health = value
+	if P1_health <= 0 && P1_alive:
 		_die()
 
-	healthbar.health = health
+	healthbar.health = P1_health
 
 # Funcion del personaje cuando muere
 func _die():

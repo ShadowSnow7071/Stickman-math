@@ -4,6 +4,8 @@ var player1_current_attack = false
 var punch1_ip = false
 var player2_current_attack = false
 var punch2_ip = false
+var P1_health = 100
+var P2_health = 100
 
 #PUNTOS
 var score = 0

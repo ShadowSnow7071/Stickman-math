@@ -16,24 +16,24 @@ texture = ExtResource("2_0ncxs")
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
-offset_left = 29.0
-offset_top = 101.0
-offset_right = 1141.0
-offset_bottom = 321.0
+offset_left = 45.0
+offset_top = 103.0
+offset_right = 1157.0
+offset_bottom = 323.0
 theme_override_fonts/font = ExtResource("3_3jkfk")
 theme_override_font_sizes/font_size = 140
-text = "¡Has perdido!"
+text = "¡Has ganado!"
 
 [node name="Label" type="Label" parent="Label"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 504.0
-offset_top = 182.0
-offset_right = 602.0
-offset_bottom = 300.0
+offset_left = 341.0
+offset_top = 176.0
+offset_right = 765.0
+offset_bottom = 294.0
 theme_override_fonts/font = ExtResource("3_3jkfk")
 theme_override_font_sizes/font_size = 80
-text = "P2"
+text = "Player 1"
 
 [node name="Button" type="Button" parent="."]
 offset_left = 392.0
